@@ -1,0 +1,127 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#registrationModal">
+            Registrar Usuario
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registrationModalLabel">Registrar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/signup" method="POST">
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="fullname" name="fullname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="document.querySelector('form').submit();">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de Usuarios -->
+
+<!-- Tabla de usuarios -->
+<div class="container p-4">
+    <div class="row">
+        <table class="table" style="width: 50%; margin: auto;">
+            <thead class="table-primary">
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each usuarios}} <!-- Cambia 'colonia' a 'usuarios' -->
+                    <tr id="usuario-{{id}}">
+                        <td class="usuario-nombre">{{nombre}}</td> <!-- Cambia 'nombre' a 'nombreCompleto' -->
+                        <td>{{username}}</td> <!-- Cambia 'usuario' a 'username' -->
+
+                         <td>
+                            <!-- Espacio entre íconos -->
+                            <span class="mx-2"></span>
+                            <!-- Lápiz para editar -->
+                            <!-- Enlace para abrir el modal -->
+                            <a href="/edit/{{id}}" class="text-warning" title="Editar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                     <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+                                 </svg>
+                            </a>
+                            
+                            <!-- Espacio entre íconos -->
+                            <span class="mx-2"></span>
+                            <!-- Bote de basura para eliminar -->
+                                <a href="javascript:void(0)" class="text-danger delete-user" data-id="{{id}}" title="Eliminar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                    </svg>
+                                </a>
+                        </td>
+                    
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Selecciona todos los botones de eliminar
+        const deleteButtons = document.querySelectorAll(".delete-user");
+
+        // Agrega un evento de clic a cada botón
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const userId = this.dataset.id; // Obtén el ID del usuario
+
+                // Mostrar ventana de confirmación
+                if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+                    // Realiza la solicitud fetch para eliminar
+                    fetch(`/delete/${userId}`, {
+                        method: "DELETE", // Asegúrate de que tu backend acepte este método
+                        headers: {
+                            "Content-Type": "application/json",
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Elimina la fila del usuario de la tabla
+                            const userRow = document.getElementById(`usuario-${userId}`);
+                            if (userRow) {
+                                userRow.remove();
+                            }
+                            alert("Usuario eliminado exitosamente.");
+                        } else {
+                            alert("Ocurrió un error al intentar eliminar el usuario.");
+                        }
+                    })
+                    .catch(() => {
+                        alert("No se pudo eliminar el usuario. Intenta nuevamente.");
+                    });
+                }
+            });
+        });
+    });
+</script>

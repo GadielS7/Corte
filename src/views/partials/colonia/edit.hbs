@@ -1,0 +1,21 @@
+<!-- Modal para editar colonia -->
+<div class="modal fade" id="editColoniaModal" tabindex="-1" aria-labelledby="editColoniaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editColoniaModalLabel">Editar Colonia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editColoniaForm">
+                    <input type="hidden" id="editColoniaId" name="id">
+                    <div class="mb-3">
+                        <label for="editColoniaNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editColoniaNombre" name="nombre" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

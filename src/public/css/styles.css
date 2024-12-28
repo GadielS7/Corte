@@ -1,0 +1,49 @@
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.page-buttons button {
+    margin: 0 2px;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.navbar {
+    display: flex; /* Usar flexbox para el navbar */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear verticalmente */
+}
+.dropdown-menu {
+    display: none; /* Ocultar el menú por defecto */
+    position: absolute; /* Asegurarse de que el menú se posicione correctamente */
+    z-index: 1000; /* Asegurarse de que el menú esté por encima de otros elementos */
+}
+.dropdown-menu.show {
+    display: block; /* Mostrar el menú cuando se activa */
+}
+

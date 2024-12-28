@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="registerClientModal" tabindex="-1" aria-labelledby="registerClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerClientModalLabel">Registrar Mikrotik</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/enlaces/add" method="POST">
+                    <div class="row">
+                        <!-- Nombre -->
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                        </div>
+
+        
+                        <!-- Teléfono -->
+                        <div class="col-md-6 mb-3">
+                            <label for="enlace" class="form-label">Enlace</label>
+                            <input type="text" class="form-control" id="enlace" name="enlace" placeholder="Ingrese el Enlace" required>
+                        </div>
+
+                    <!-- Botón para registrar -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Registrar Mikrotik</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

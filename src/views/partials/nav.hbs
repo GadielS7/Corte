@@ -1,0 +1,59 @@
+
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fs-3" href="/mikrotik">Soluciones PC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto"> <!-- Añadir 'me-auto' para empujar el dropdown a la derecha -->
+                {{#if user}}
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-4" aria-current="page" href="/mikrotik">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-4" href="/enlaces">Mikrotik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-4" href="/colonia">Colonias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-4" href="/signup">Usuarios</a>
+                    </li>
+            
+            </ul>
+            <ul class="navbar-nav"> <!-- Nueva lista para el dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white fs-4" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user.username}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="/logout">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {{/if}}
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Obtener el elemento del dropdown
+    const userDropdown = document.getElementById('userDropdown');
+    const dropdownMenu = userDropdown.nextElementSibling; // El siguiente elemento es el menú
+
+    // Agregar un evento de clic al enlace del dropdown
+    userDropdown.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+        dropdownMenu.classList.toggle('show'); // Alternar la clase 'show' para mostrar/ocultar el menú
+    });
+
+    // Cerrar el dropdown si se hace clic fuera de él
+    window.addEventListener('click', function(event) {
+        if (!userDropdown.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show'); // Ocultar el menú
+        }
+    });
+</script>
+

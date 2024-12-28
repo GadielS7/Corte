@@ -1,0 +1,103 @@
+<div class="container mt-5">
+        <h1 class="text-center">Editar Cliente</h1>
+        <br>
+        <form id="clienteForm" action="/mikrotik/edit/{{clientes.id}}" method="POST">
+            <div class="row">
+                <!-- Nombre -->
+                <div class="col-md-6 mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" value="{{clientes.nombre}}" id="nombre" name="nombre" placeholder="Ingrese el nombre" >
+                </div>
+
+                <!-- Mikrotik (Select) -->
+               <div class="col-md-6 mb-3">
+                    <label for="mikrotik" class="form-label">Mikrotik</label>
+                    <select class="form-select" id="mikrotik" name="mikrotik">
+                        <!-- Opción por defecto que permite dejar el campo vacío -->
+                        <option value="" {{#ifCond clientes.mikrotik_id ""}}selected{{/ifCond}}>Seleccione una opción</option>
+                        
+                        <!-- Opciones de Mikrotik -->
+                        {{#each mikrotiks}}
+                            <option value="{{id}}" {{#ifCond id ../clientes.mikrotik_id}}selected{{/ifCond}}>{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <!-- Teléfono -->
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" value="{{clientes.telefono}}" placeholder="Ingrese el teléfono">
+                </div>
+
+                <!-- Colonia (Select) -->
+                <div class="col-md-6 mb-3">
+                    <label for="colonia" class="form-label">Colonia</label>
+                    <select class="form-select" id="colonia" name="colonia">
+                        <option value="" {{#ifCond clientes.colonia_id ""}}selected{{/ifCond}}>Seleccione una opción</option>
+                        {{#each colonias}}
+                            <option value="{{id}}" {{#ifCond id ../clientes.colonia_id}}selected{{/ifCond}}>{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <!-- Estado (Select) -->
+                <!-- Estado (Select) -->
+                <div class="col-md-6 mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado" name="estado">
+                        <option value="" {{#ifCond clientes.estado_id ""}}selected{{/ifCond}}>Seleccione una opción</option>
+                        {{#each estados}}
+                            <option value="{{id}}" {{#ifCond id ../clientes.estado_id}}selected{{/ifCond}}>{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <!-- Megas de subida -->
+                <div class="col-md-6 mb-3">
+                    <label for="megas_subida" class="form-label">Megas de Subida</label>
+                    <input type="text" class="form-control" id="megas_subida" name="megas_subida" value="{{clientes.megas_subida}}" placeholder="Ingrese las megas de subida" >
+                </div>
+
+                <!-- Megas de bajada -->
+                <div class="col-md-6 mb-3">
+                    <label for="megas_bajada" class="form-label">Megas de Bajada</label>
+                    <input type="text" class="form-control" id="megas_bajada" name="megas_bajada" value="{{clientes.megas_bajada}}" placeholder="Ingrese las megas de bajada" >
+                </div>
+
+                <!-- IP -->
+                <div class="col-md-6 mb-3">
+                    <label for="ip" class="form-label">IP</label>
+                    <input type="text" class="form-control" id="ip" name="ip" value="{{clientes.ip}}" placeholder="Ingrese la IP" >
+                </div>
+
+                <!-- Comentarios -->
+             <div class="col-md-12 mb-3">
+                    <label for="comentarios" class="form-label">Comentarios</label>
+                    <textarea class="form-control" id="comentarios" name="comentarios" rows="6" placeholder="Ingrese comentarios opcionales" style="height: 200px;">{{clientes.comentarios}}</textarea>
+            </div>
+
+            </div>
+
+            <!-- Botón para registrar -->
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleccionar todos los campos de texto e input de tipo texto
+        const fields = document.querySelectorAll('input[type="text"], input[type="tel"], textarea');
+
+        // Agregar el evento 'input' a cada campo
+        fields.forEach(function (field) {
+            field.addEventListener('input', function () {
+                // Convertir el valor del campo a mayúsculas mientras escribe
+                field.value = field.value.toUpperCase();
+            });
+        });
+    });
+</script>

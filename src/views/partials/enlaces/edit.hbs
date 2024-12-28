@@ -1,0 +1,25 @@
+<!-- Modal para editar enlace -->
+<div class="modal fade" id="editEnlaceModal" tabindex="-1" aria-labelledby="editEnlaceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEnlaceModalLabel">Editar Enlace</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editEnlaceForm">
+                    <input type="hidden" id="editEnlaceId">
+                    <div class="mb-3">
+                        <label for="editEnlaceNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editEnlaceNombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEnlaceURL" class="form-label">Enlace</label>
+                        <input type="text" class="form-control" id="editEnlaceURL" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

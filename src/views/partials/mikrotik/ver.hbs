@@ -1,0 +1,67 @@
+<script>
+// Este código debe ir en tu archivo JavaScript que maneja el modal
+document.addEventListener('DOMContentLoaded', function () {
+    const viewMikrotikModal = document.getElementById('viewMikrotikModal');
+    viewMikrotikModal.addEventListener('show.bs.modal', function (event) {
+        // Obtener el botón que disparó el evento
+        const button = event.relatedTarget;
+        // Extraer la información de los atributos 'data-*' del botón
+        const mikrotikNombre = button.getAttribute('data-mikrotik-nombre');
+        const mikrotikLink = button.getAttribute('data-mikrotik-link');
+        const mikrotikCliente = button.getAttribute('data-mikrotik-cliente');
+        const mikrotikIp = button.getAttribute('data-mikrotik-ip');
+        const mikrotikComments = button.getAttribute('data-mikrotik-comments');
+        const mikrotikMegas_subida = button.getAttribute('data-mikrotik-megas-subida');
+        const mikrotikMegas_bajada = button.getAttribute('data-mikrotik-megas-bajada');
+
+        // Llenar los campos del modal con los valores
+        document.getElementById('mikrotik-nombre').textContent = mikrotikNombre || ' ';
+        document.getElementById('mikrotik-link').innerHTML = mikrotikLink ? mikrotikLink.replace(/\n/g, '<br>') : ' ';
+        document.getElementById('mikrotik-cliente').textContent = mikrotikCliente || ' ';
+        document.getElementById('mikrotik-ip').textContent = mikrotikIp || ' ';
+        document.getElementById('mikrotik-megas-subida').textContent = mikrotikMegas_subida || ' ';
+        document.getElementById('mikrotik-megas-bajada').textContent = mikrotikMegas_bajada || ' ';
+
+        // Procesar los saltos de línea para los comentarios
+        document.getElementById('mikrotik-comments').innerHTML = mikrotikComments.replace(/\n/g, '<br>');
+    });
+});
+
+
+</script>
+<!-- Modal para ver detalles -->
+<!-- Modal -->
+<div class="modal fade" id="viewMikrotikModal" tabindex="-1" aria-labelledby="viewMikrotikModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- Agrega la clase modal-lg para hacerlo más grande -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewMikrotikModalLabel">Detalles Mikrotik</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height: 460px;"> <!-- Ajusta la altura si lo deseas -->
+                <div><strong>Nombre: </strong><span id="mikrotik-nombre"></span></div>
+                <br>
+                <div><strong>Link: <br></strong><span id="mikrotik-link"></span></div>
+                <br>
+                <div><strong>Cliente: </strong><span id="mikrotik-cliente"></span></div>
+                <br>
+                <div><strong>IP: </strong><span id="mikrotik-ip"></span></div>
+                <br>
+                <div><strong>Megas Subida: </strong><span id="mikrotik-megas-subida"></span></div>
+                <div><strong>Megas Bajada: </strong><span id="mikrotik-megas-bajada"></span></div>
+                <br>
+                <div>
+                    <strong>Comentarios: </strong>
+                    <!-- Contenedor para comentarios con scroll -->
+                    <div id="mikrotik-comments-container" style="max-height: 130px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                        <span id="mikrotik-comments"></span>
+                    </div>
+                </div>
+               
+            </div>
+             <br>
+             <br>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,21 @@
+
+<!-- Modal para registrar nueva colonia -->
+<div class="modal fade" id="registerColoniaModal" tabindex="-1" aria-labelledby="registerColoniaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerColoniaModalLabel">Registrar Colonia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerColoniaForm" action="/colonia/add" method="POST">
+                    <div class="mb-3">
+                        <label for="newColoniaNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="newColoniaNombre" name="nombre" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

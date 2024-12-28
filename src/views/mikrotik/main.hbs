@@ -1,0 +1,110 @@
+<div class="container mt-5">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-6">
+            <div id="clientesActivos" style="display:none;">
+                <h3>Total De Clientes Activos: <span id="totalActivos">{{totalActivos}}</span></h3>
+            </div>
+            <div id="clientesInactivos" style="display:none;">
+                <h3>Total De Clientes Inactivos: <span id="totalInactivos">{{totalInactivos}}</span></h3>
+            </div>
+            <div id="totalClientes" style="display:none;">
+                <h3>Total De Clientes: <span id="totalClientes">{{totalRecords}}</span></h3>
+            </div>
+            <div id="totalBaja" style="display:none;">
+                <h3>Total De Baja: <span id="totalBaja">{{totalBaja}}</span></h3>
+            </div>
+            <div id="clientesSinMikrotik" style="display:none;">
+                <h3>Total De Clientes Sin Mikrotik: <span id="totalSinMikrotik">{{totalSinMikrotik}}</span></h3>
+            </div>
+            <div id="totales">
+                <h3 id="totalMegasSubida">Total Megas de Subida: 0M</h3>
+                <h3 id="totalMegasBajada">Total Megas de Bajada: 0M</h3>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#registerClientModal">
+                Registrar Cliente
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <!-- Buscador a la izquierda -->
+        <div class="col-md-8 d-flex">
+            <form class="input-group mb-3 me-3" action="/mikrotik/search" method="GET">
+                <input type="text" name="query" id="searchQuery" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button>
+            </form>
+
+            <!-- Filtro de MikroTiks -->
+            <div class="input-group mb-3">
+                <select class="form-control" id="mikrotikFiltro" aria-label="Filtro de MikroTik">
+                    <option value="" selected>Todos los MikroTiks</option>
+                    {{#each mikrotiks}}
+                        <option value="{{id}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+
+        <!-- Filtro de estado a la derecha -->
+        <div class="col-md-4 d-flex justify-content-end">
+            <select class="form-select w-auto" id="estadoFiltro" aria-label="Filtro de estado">
+                <option value="" selected>Todos</option>
+                <option value="1">Activo</option>
+                <option value="2">Corte</option>
+                <option value="3">Baja</option> <!-- Nueva opción para "Baja" -->
+                <option value="sin_mikrotik">Sin Mikrotik</option> <!-- Nueva opción para "Sin Mikrotik" -->
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+ {{>mikrotik/add}} 
+ {{>mikrotik/ver}}
+
+<div class="container p-4">
+    <div class="row">
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th>Estado</th>
+                    <th>Nombre</th>
+                    <th>Colonia</th>
+                    <th>Megas de Subida</th>
+                    <th>Megas de Bajada</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+     <div class="pagination-container">
+    <button class="btn btn-primary prev-page">Anterior</button>
+    <div class="page-buttons"></div>
+    <button class="btn btn-primary next-page">Siguiente</button>
+</div>
+</div>
+
+<script>
+function confirmDelete(event, id) {
+        event.preventDefault();  // Previene la acción predeterminada del enlace (navegar a la URL)
+        
+        const confirmation = confirm("¿Estás seguro de que deseas eliminar este elemento?");
+        if (confirmation) {
+            alert("Elemento con ID " + id + " será eliminado.");
+            window.location.href = "/mikrotik/delete/" + id;  // Redirige a la URL de eliminación si el usuario confirma
+        } else {
+            alert("Eliminación cancelada.");
+        }
+    }
+</script>
+

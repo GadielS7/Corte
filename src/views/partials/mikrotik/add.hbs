@@ -1,0 +1,90 @@
+<!-- Modal -->
+<div class="modal fade" id="registerClientModal" tabindex="-1" aria-labelledby="registerClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerClientModalLabel">Registrar Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/mikrotik/add" method="POST">
+                    <div class="row">
+                        <!-- Nombre -->
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+                        </div>
+
+                        <!-- Mikrotik (Select) -->
+                        <div class="col-md-6 mb-3">
+                            <label for="mikrotik" class="form-label">Mikrotik</label>
+                            <select class="form-select" id="mikrotik" name="mikrotik">
+                                       <option value="" selected disabled>Seleccione un Mikrotik</option>
+                                    {{#each mikrotiks}}
+                                        <option value="{{id}}">{{nombre}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="col-md-6 mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono" required>
+                        </div>
+
+                        <!-- Colonia (Select) -->
+                        <div class="col-md-6 mb-3">
+                            <label for="colonia" class="form-label">Colonia</label>
+                            <select class="form-select" id="colonia" name="colonia">
+                                <option value="" selected disabled>Seleccione una colonia</option>
+                                {{#each colonia}}
+                                        <option value="{{id}}">{{nombre}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+
+                        <!-- Estado (Select) -->
+                        <div class="col-md-6 mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado">
+                                <option value="" selected disabled>Seleccione un estado</option>
+                                     {{#each estado}}
+                                        <option value="{{id}}">{{nombre}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+
+                        <!-- Megas de subida -->
+                        <div class="col-md-6 mb-3">
+                            <label for="megas_subida" class="form-label">Megas de Subida</label>
+                            <input type="text" class="form-control" id="megas_subida" name="megas_subida" placeholder="Ingrese las megas de subida" required>
+                        </div>
+
+                        <!-- Megas de bajada -->
+                        <div class="col-md-6 mb-3">
+                            <label for="megas_bajada" class="form-label">Megas de Bajada</label>
+                            <input type="text" class="form-control" id="megas_bajada" name="megas_bajada" placeholder="Ingrese las megas de bajada" required>
+                        </div>
+
+                        <!-- IP -->
+                        <div class="col-md-6 mb-3">
+                            <label for="ip" class="form-label">IP</label>
+                            <input type="text" class="form-control" id="ip" name="ip" placeholder="Ingrese la IP" required>
+                        </div>
+
+                        <!-- Comentarios -->
+                        <div class="col-md-12 mb-3">
+                            <label for="comentarios" class="form-label">Comentarios</label>
+                            <textarea class="form-control" id="comentarios" name="comentarios" rows="3" placeholder="Ingrese comentarios"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Botón para registrar -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

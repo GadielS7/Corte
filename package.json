@@ -1,0 +1,50 @@
+{
+  "name": "cortes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+
+  "pkg": {
+    "targets": [
+      "node18-win-x64" 
+    ],
+    "assets": [
+      "src/views/**/*",
+      "src/public/css/**/*",
+      "src/public/js/**/*",
+      "src/public/icons/**/*",
+      "node_modules/string-width/**/*",
+      "node_modules/strip-ansi/**/*",
+      "node_modules/wrap-ansi/**/*",
+      "node_modules/ansi-regex/**/*",
+      "node_modules/ansi-styles/**/*"
+    ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.0",
+    "hbs": "^4.2.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.5",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pkg": "^5.8.1",
+    "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
