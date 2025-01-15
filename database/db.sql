@@ -5,7 +5,7 @@ use corte;
 create table users(
     id int(11) NOT NULL auto_increment,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     nombre VARCHAR(65) NOT NULL,
     PRIMARY KEY (id)
 );
