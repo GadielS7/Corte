@@ -224,11 +224,13 @@ router.get('/paginar', isLoggedIn, async (req, res) => {
 
     // Sumar los megas de subida y bajada
     mikrotikData.forEach(cliente => {
-        if (cliente.megas_subida) {
-            totalMegasSubida += parseMegas(cliente.megas_subida);
-        }
-        if (cliente.megas_bajada) {
-            totalMegasBajada += parseMegas(cliente.megas_bajada);
+        if (cliente.estado_id === 1) {  // Solo clientes activos
+            if (cliente.megas_subida) {
+                totalMegasSubida += parseMegas(cliente.megas_subida);
+            }
+            if (cliente.megas_bajada) {
+                totalMegasBajada += parseMegas(cliente.megas_bajada);
+            }
         }
     });
 
