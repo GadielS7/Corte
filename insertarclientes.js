@@ -1,5 +1,10 @@
 const mysql = require('mysql2');
 
+
+//insertar primero las colonias luego ajustar el id de las colonias a la BD original y luego ejecutar el ionsertar clientes colonia
+//usar este archivo al final por si acaso insertar clientes;
+
+
 // Configuración de la base de datos de origen (MariaDB)
 const dbOrigen = mysql.createConnection({
   host: '100.64.0.5',    // Dirección del servidor de la base de datos de origen
