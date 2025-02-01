@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${row.estado_icono || ''}</td>
                 <td>${row.nombre || ''}</td>
                 <td>${row.colonia_nombre || ''}</td>
-                <td>${row.megas_subida || ''}</td>
-                <td>${row.megas_bajada || ''}</td>
+                <td>${row.mikrotik_nombre || ''}</td>
+                <td>${row.mikrotik_enlace || ''}</td>
                 <td>${row.telefono || ''}</td>
                 <td>
                         <!-- Ver -->
